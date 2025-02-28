@@ -1,0 +1,37 @@
+body {
+  margin: 0;
+  overflow: hidden;
+}
+canvas {
+  display: block;
+}
+
+#gameUI {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    font-family: Arial, sans-serif;
+    background-color: rgba(0,0,0,0.4);
+    padding: 10px;
+    border-radius: 8px;
+    z-index: 100;
+}
+
+#gameUI div {
+    margin-bottom: 5px;
+}
+
+#gameUI button {
+    margin-top: 5px;
+    padding: 5px 10px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#gameUI button:hover {
+    background: #45a049;
+}
