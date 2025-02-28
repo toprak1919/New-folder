@@ -9,14 +9,24 @@ export default class Character {
     createCharacterMesh() {
         const character = new THREE.Group();
 
-        const material = new THREE.MeshStandardMaterial({ color: '#ffddaa' });
+        const material = new THREE.MeshStandardMaterial({ 
+            color: '#ffddaa',
+            metalness: 0,
+            roughness: 0.8,
+        });
 
         const body = new THREE.Mesh(new THREE.BoxGeometry(1, 1.5, 0.5), material);
+        body.castShadow = true;
+
         const head = new THREE.Mesh(new THREE.SphereGeometry(0.4, 32, 16), material);
         head.position.set(0, 1.2, 0);
+        head.castShadow = true;
 
         const legs = this.createLimbs(0.2, 1, material, -0.6);
+        legs.children.forEach(leg => leg.castShadow = true);
+
         const arms = this.createLimbs(0.15, 0.8, material, 0.3, true);
+        arms.children.forEach(arm => arm.castShadow = true);
 
         character.add(body, head, legs, arms);
 

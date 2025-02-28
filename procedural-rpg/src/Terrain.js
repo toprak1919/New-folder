@@ -24,11 +24,15 @@ export default class Terrain {
 
         const material = new THREE.MeshStandardMaterial({
             color: '#3B7A57',
-            wireframe: false,
             flatShading: true,
+            metalness: 0,
+            roughness: 1,
         });
 
-        return new THREE.Mesh(geometry, material);
+        const terrainMesh = new THREE.Mesh(geometry, material);
+        terrainMesh.receiveShadow = true;
+
+        return terrainMesh;
     }
 
     getHeight(x, z, scale) {

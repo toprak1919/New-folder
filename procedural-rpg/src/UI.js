@@ -1,6 +1,5 @@
-// UI.js constructor example
 export default class UI {
-    constructor(player, inventory, quest = null) {
+    constructor(player, inventory, quest) {
         this.player = player;
         this.inventory = inventory;
         this.quest = quest;
@@ -8,22 +7,15 @@ export default class UI {
         this.healthElement = document.getElementById('health');
         this.inventoryElement = document.getElementById('inventory');
         this.questElement = document.getElementById('quest');
-        this.levelElement = document.getElementById('level');
     }
 
     update() {
         this.healthElement.innerText = `Health: ${Math.round(this.player.health)}`;
         this.inventoryElement.innerText = `Inventory: ${this.inventory.items.length} items`;
-        if (this.quest) {
-            this.questElement.innerText = `Quest: ${this.quest.activeQuest}`;
-        }
+        this.questElement.innerText = `Quest: ${this.quest.getQuestStatus()}`;
     }
 
     updateProgression(level, xp, xpToNextLevel) {
-        this.levelElement.innerText = `Level: ${level} (XP: ${xp}/${xpToNextLevel})`;
+        document.getElementById('level').innerText = `Level: ${level} (XP: ${xp}/${xpToNextLevel})`;
     }
-
-    updateQuest(questText, progress, goal) {
-        this.questElement.innerText = `Quest: ${questText} (${progress}/${goal})`;
-    }
-}
+} 

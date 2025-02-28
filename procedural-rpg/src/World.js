@@ -10,6 +10,8 @@ export default class World {
         this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.renderer.setPixelRatio(window.devicePixelRatio);
+        this.renderer.shadowMap.enabled = true;
+        this.renderer.physicallyCorrectLights = true;
 
         window.addEventListener('resize', () => this.onWindowResize());
 
@@ -17,11 +19,18 @@ export default class World {
     }
 
     setupLighting() {
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-        directionalLight.position.set(50, 50, 25);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
+        directionalLight.position.set(30, 50, 30);
+        directionalLight.castShadow = true;
+
+        directionalLight.shadow.camera.top = 50;
+        directionalLight.shadow.camera.bottom = -50;
+        directionalLight.shadow.camera.left = -50;
+        directionalLight.shadow.camera.right = 50;
 
         this.scene.add(ambientLight, directionalLight);
+        this.renderer.shadowMap.enabled = true;
     }
 
     onWindowResize() {
